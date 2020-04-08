@@ -1,0 +1,30 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="content-section">
+        <div class="media">
+               <div class="media-body">
+                   <h2 class="account-heading">Ministry Name  : {{ object.MinistryName }}</h2>
+                   <p class="text-secondary">Minister Name : {{ object.MinisterName }}</p>
+                   <p class="text-secondary">Email : {{ object.Email }}</p>
+
+                   <td class="column6">
+                       <div class="form-group">
+                           <a class="btn btn-primary" href="{% url 'viewMinistry' %}" role="button">Back</a>
+                       </div>
+                   </td>
+               </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock content%}

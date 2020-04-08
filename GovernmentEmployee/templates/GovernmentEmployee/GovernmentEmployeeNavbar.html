@@ -1,0 +1,127 @@
+<!--{% load static %}-->
+<!--<link rel="stylesheet" href="{% static 'GovernmentEmployee/css/style.css' %}"/>-->
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Government Employee</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'GovernmentEmployee/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'GovernmentEmployee/css/simple-sidebar.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading" style="background-color:rgb(0, 128, 0);">Government Employee </div>
+      <div class="list-group list-group-flush">
+        <a href="{% url 'GovernmentEmployeeHome' %}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="{% url 'addTraining' %}" class="list-group-item list-group-item-action bg-light">Add Training</a>
+        <a href="{% url 'viewTraining'%}" class="list-group-item list-group-item-action bg-light">View Training</a>
+        <a href="{% url 'registerStudent' %}" class="list-group-item list-group-item-action bg-light">Register Student</a>
+        <a href="{% url 'StudentRegisterView' %}" class="list-group-item list-group-item-action bg-light">View Register Student</a>
+        <a href="{% url 'registerTrainer' %}" class="list-group-item list-group-item-action bg-light">Register Trainer</a>
+        <a href="{% url 'viewRegisterTrainer' %}" class="list-group-item list-group-item-action bg-light">View Register Trainer</a>
+        <a href="{% url 'addStudentTakenCourse' %}" class="list-group-item list-group-item-action bg-light">Add Student Taken Course</a>
+        <a href="{% url 'StudentTakenCourseView'%}" class="list-group-item list-group-item-action bg-light">View Student Taken Course</a>
+          <a href="{% url 'addTrainerTakenCourse' %}" class="list-group-item list-group-item-action bg-light">Add Trainer Taken Course</a>
+        <a href="{% url 'ViewTrainerTakenCourse'%}" class="list-group-item list-group-item-action bg-light">View Trainer Taken Course</a>
+
+
+<!--        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action bg-light">logout</a>-->
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'BaseHome' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'GovernmentEmployeeProfile' %}">Profile</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               {% if user.is_authenticated %}
+                 {{ user.username }}
+               {% endif %}
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'GovernmentEmployeeProfile' %}">profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'govt_password_change'%}">Password Change</a>
+                <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+{% include 'SuperAdmin/messages.html'%}
+        <div class="container-fluid">
+
+            {% block content %}
+              <div class="card-columns">
+                  {% for book in shelf %}
+                      {% if book.username == user %}
+                            <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src="{{ book.picture.url }}">
+                          <div class="card-body">
+                            <a class="card-title" href="../detailsCourse/{{book.id}} "><h4 >{{ book.TrainingName }}</h4></a>
+
+                           <div class="card-footer bg-transparent border-dark">
+                           <p class="card-title">{{book.TrainingStartDate}}</p>
+                           <p class="card-title">{{book.TrainingDuration}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      {% endif%}
+                  {% endfor %}
+              </div>
+               <div class="col-sm-10 "></div>
+            {% endblock %}
+        </div>
+    </div>
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'GovernmentEmployee/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'GovernmentEmployee/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% extends 'GovernmentEmployee/GovernmentEmployeeNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="content-section">
+        <div class="media">
+               <img class="rounded-circle account-img" src="{{ object.image.url }}">
+               <div class="media-body">
+                   <h2 class="account-heading">UserName : {{ object.username }}</h2>
+                   <p class="text-secondary">Email : {{ object.email }}</p>
+                    <p class="text-secondary">First Name : {{ object.first_name }}</p>
+                   <p class="text-secondary">Last Name : {{ object.last_name }}</p>
+                   <p class="text-secondary">Full Name : {{ object.last_name }} {{ object.last_name }}</p>
+                   <p class="text-secondary">Phone Number : {{ object.phone_number }}</p>
+                   <p class="text-secondary">Address : {{ object.Address }}</p>
+                   <br><br><br><br>
+                   <br><br><br><br>
+                   <td class="column3">
+                       <div class="form-group" align="top">
+                           <a class="btn btn-primary" href="{% url 'StudentRegisterView' %}" role="button">Back</a>
+                       </div>
+                   </td>
+
+               </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock content%}

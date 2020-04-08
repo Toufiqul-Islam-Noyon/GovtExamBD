@@ -1,0 +1,103 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'SuperAdmin/css/style.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/util.css' %}">-->
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/main.css' %}">-->
+<style>
+    #myInput {
+<!--  background-image: url('/css/searchicon.png');-->
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+</style>
+    <div class="container-fluid">
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100">
+                         <h1 align="center">Ministry Information</h1>
+                        <input type="text" id="myInput"  placeholder="Enter Ministry Name or Minister name or Email.." title="Type in a name">
+                        <table class="table table-bordered" id="myTable">
+                                <thead>
+                                    <tr class="table100-head">
+                                            <th  class="column1" >MinistryName</th>
+                                            <th  class="column2">MinisterName</th>
+                                            <th  class="column3">Email</th>
+                                            <th  class="column4">Edit</th>
+                                            <th  class="column5">Delete</th>
+                                            <th  class="column6">Details</th>
+
+                                    </tr>
+                                </thead>
+                            <tbody id="joy">
+                                 {% for ministry in contacts  %}
+                                     {% if ministry.username == user %}
+                                        <tr>
+                                            <td class="column1">{{ ministry.MinistryName}}</td>
+                                            <td class="column2">{{ ministry.MinisterName }}</td>
+                                            <td class="column3">{{ ministry.Email }}</td>
+                                            <td class="column4">
+                                                <div class="form-group">
+                                                   <a class="btn btn-primary" href="../editMinistry/{{ ministry.id }}" role="button">Edit</a>
+                                                </div>
+                                            </td>
+                                            <td class="column4">
+                                                <div class="form-group">
+                                                   <a class="btn btn-primary" href="../deleteMinistry/{{ ministry.id }}" role="button">Delete</a>
+                                                </div>
+                                            </td>
+                                            <td class="column6">
+                                                <div class="form-group">
+                                                   <a class="btn btn-primary" href="../detailsMinistry/{{ ministry.id }}" role="button">Details</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                     {% endif%}
+                                 {% endfor %}
+                            </tbody>
+                        </table>
+                        <script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+									var value = $(this).val().toLowerCase();
+									$("#joy tr").filter(function() {
+									  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+									});
+								  });
+								});
+                        </script>
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if contacts.has_previous %}
+                                    <a href="?page=1">&laquo; first</a>
+                                    <a href="?page={{ contacts.previous_page_number }}">previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+                                </span>
+
+                                {% if contacts.has_next %}
+                                <a href="?page={{ contacts.next_page_number }}">next</a>
+                                <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

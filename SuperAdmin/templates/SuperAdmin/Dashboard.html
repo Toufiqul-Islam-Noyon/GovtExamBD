@@ -1,0 +1,29 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+ <div class="container">
+     <div class="card-columns">
+         <div class="card bg-success">
+             <div class="card-body text-center">
+                 <p class="card-text">SuperAdmin</p>
+                     <p class="card-text">2</p>
+             </div>
+         </div>
+         <div class="card bg-primary">
+             <div class="card-body text-center">
+                 <p class="card-text">Ministry</p>
+                 <p class="card-text">{{ ministry }} </p>
+             </div>
+         </div>
+         <div class="card bg-warning">
+             <div class="card-body text-center">
+                 <p class="card-text">Government Employee</p>
+                <p class="card-text">2</p>
+             </div>
+         </div>
+
+     </div>
+ </div>
+{% endblock content %}

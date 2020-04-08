@@ -1,0 +1,38 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!--    <link rel="stylesheet" href="{% static 'SuperAdmin/css/style.css' %}"/>-->
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/util.css' %}">-->
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/main.css' %}">-->
+     <div class="container-fluid">
+         <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100">
+                        <h1 align="center"></h1>
+
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <td>
+                                        Are you sure you want to delete "{{ object }}" ?<br/>
+
+                                    </td>
+                                    <td>
+                                        <div class="form-group d-flex justify-content-center">
+                                               <input type="submit"  class="btn btn-primary" value="Delete" />
+                                        </div>
+                                        <div class="form-group d-flex justify-content-end">
+                                            <a   class="btn btn-primary" href="{% url 'viewRegisterGovt' %}" role="button">Back</a>
+                                        </div>
+                                    </td>
+                                </form>
+
+                    </div>
+
+                </div>
+            </div>
+         </div>
+	 </div>
+
+{% endblock %}

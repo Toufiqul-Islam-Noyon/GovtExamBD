@@ -1,0 +1,24 @@
+{% extends 'GovernmentEmployee/GovernmentEmployeeNavbar.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="p-3 mb-2 bg-primary text-white">{{ object.TrainingName }} Details</div>
+        <div class="row no-gutters bg-light position-relative">
+             <div class="col-md-6 mb-md-0 p-md-4">
+                <img src="{{ object.picture.url }}"  class="w-50" alt="...">
+             </div>
+             <div class="col-md-6 position-static p-4 pl-md-0">
+                <div class="p-3 mb-2 bg-secondary text-white">{{ object.TrainingName }}</div>
+                <p>Course Start Date : {{ object.TrainingStartDate }}</p>
+                <p>Course Duration : {{ object.TrainingDuration }}</p><br>
+                 <td class="column6">
+                    <div class="form-group" align="Center">
+                        <a class="btn btn-primary" href="{% url 'viewTraining' %}" role="button">Back</a>
+                    </div>
+                 </td>
+             </div>
+        </div>
+    </div>
+
+{% endblock content%}

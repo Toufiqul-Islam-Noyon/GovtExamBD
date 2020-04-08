@@ -1,0 +1,23 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'SuperAdmin/css/style.css' %}"/>
+     <div class="container-fluid">
+         <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100">
+                        <h1 align="center">Ministry Add</h1>
+                            <form method="post">{% csrf_token %}
+                               {{ form|crispy }}
+                                 <div class="form-group">
+                                    <button class="btn btn-outline-info" type="submit">Submit</button>
+                                 </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+	     </div>
+     </div>
+ {% endblock %}

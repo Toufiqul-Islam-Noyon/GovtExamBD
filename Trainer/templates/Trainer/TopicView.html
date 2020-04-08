@@ -1,0 +1,72 @@
+{% extends 'Trainer/TrainerNavbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'GovernmentEmployee/css/style.css' %}"/>
+<!--<link rel="stylesheet" type="text/css" href="{% static 'GovernmentEmployee/css/util.css' %}">-->
+<!--<link rel="stylesheet" type="text/css" href="{% static 'GovernmentEmployee/css/main.css' %}">-->
+
+
+<div class="container-fluid">
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+                    <div class="p-3 mb-2 bg-success text-white" align="center">Topic View</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr class="table100-head">
+                                    <th  class="column1" >TrainingName</th>
+                                    <th  class="column2">TopicName</th>
+                                    <th  class="column3">Edit</th>
+                                    <th  class="column4">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+
+                             {% for topic in object_list  %}
+                                            <tr>
+                                                <td class="column1">{{ topic.TrainingName}}</td>
+                                                <td class="column2">{{ topic.TopicName }}</td>
+                                                 <td class="column3">
+                                                    <div class="form-group">
+                                                       <a class="btn btn-primary" href="../editTopic/{{ topic.id }}" role="button">Edit</a>
+                                                    </div>
+                                                 </td>
+                                                 <td class="column4">
+                                                        <div class="form-group">
+                                                           <a class="btn btn-primary" href="../deleteTopic/{{ topic.id }}" role="button">Delete</a>
+                                                        </div>
+                                                 </td>
+                                            </tr>
+                             {% endfor %}
+						</tbody>
+					</table>
+                    {% if is_paginated %}
+
+                          {% if page_obj.has_previous %}
+                            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                          {% endif %}
+
+                          {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                              <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                              <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                            {% endif %}
+                          {% endfor %}
+
+                          {% if page_obj.has_next %}
+                            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                          {% endif %}
+
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

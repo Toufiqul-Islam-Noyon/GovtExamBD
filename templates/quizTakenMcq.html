@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'SuperAdmin/css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'SuperAdmin/css/main.css' %}">
+
+{% for que in object_list %}
+
+
+
+<center><p class="bg-success text-white">{{ que.McqQuestionName }}</p></center><br>
+
+
+          <div class="ans_dv">
+             <input type="hidden" class="curr_ans" value="2">
+             <table class="options" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tbody><tr>
+            <td width="4%" valign="top"><input type="radio" name="answec1" qno="1" id="answec1_1" value="A"></td>
+            <td width="96%" valign="top"><p style="width:100%; margin:0px; padding:0px 0px 20px 0px; font:normal 13px Ebrima, Arial, Helvetica, sans-serif;">
+            <span style="color:#00F; font-size:14px;  font-family:Embrima;">A) </span>
+              <span class="answerData">{{ que.Choice1 }}</span>
+              </p></td>
+                  </tr>
+            </tbody></table>
+            <input type="hidden" class="curr_ans" value="2">
+            <table class="options" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tbody><tr>
+            <td width="4%" valign="top"><input type="radio" name="answec1" qno="1" id="answec1_2" value="B"></td>
+            <td width="96%" valign="top"><p style="width:100%; margin:0px; padding:0px 0px 20px 0px; font:normal 13px Ebrima, Arial, Helvetica, sans-serif;">
+            <span style="color:#00F; font-size:14px;  font-family:Embrima;">B) </span>
+             <span class="answerData correctData">{{ que.Choice2 }}</span>
+            </p></td>
+            </tr>
+            </tbody></table>
+            <input type="hidden" class="curr_ans" value="2">
+             <table class="options" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tbody><tr>
+            <td width="4%" valign="top"><input type="radio" name="answec1" qno="1" id="answec1_3" value="C"></td>
+            <td width="96%" valign="top"><p style="width:100%; margin:0px; padding:0px 0px 20px 0px; font:normal 13px Ebrima, Arial, Helvetica, sans-serif;">
+            <span style="color:#00F; font-size:14px;  font-family:Embrima;">C) </span>
+            <span class="answerData">{{ que.Choice3 }}</span>
+            </p></td>
+              </tr>
+            </tbody></table>
+            <input type="hidden" class="curr_ans" value="2">
+            <table class="options" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <tbody><tr>
+            <td width="4%" valign="top"><input type="radio" name="answec1" qno="1" id="answec1_4" value="D"></td>
+            <td width="96%" valign="top"><p style="width:100%; margin:0px; padding:0px 0px 20px 0px; font:normal 13px Ebrima, Arial, Helvetica, sans-serif;">
+            <span style="color:#00F; font-size:14px;  font-family:Embrima;">D) </span>
+             <span class="answerData">{{ que.Choice4 }}</span>
+            </p></td>
+             </tr>
+            </tbody></table>
+          </div>
+
+
+{%endfor%}
+<!--<center><button type="button" class="btn btn-primary">Submit</button></center>-->
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+

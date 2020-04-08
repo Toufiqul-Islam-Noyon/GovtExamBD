@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <title>GovtExamBD</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<!--  <link href="{% static 'https://fonts.googleapis.com/css?family=Muli:300,400,700,900' %}" rel="stylesheet">-->
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/jquery-ui.css'%}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
+
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css'%}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css'%}">
+
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css'%}">
+
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
+  <link href="{% static 'css/jquery.mb.YTPlayer.min.css'%}" media="all" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+          <div class="d-flex align-items-center">
+            <div class="site-logo">
+              <!-- <a href="index.html" class="d-block">
+                <img src="images/logo.jpg" alt="Image" class="img-fluid">
+              </a> -->
+            </div>
+            <div class="mr-auto">
+                  <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                      <li class="active">
+                        <a href="{% url 'BaseHome' %}" class="nav-link text-left">GovtExamBD</a>
+                      </li>
+
+                      <li class="">
+                        <a href="{% url 'BaseHome' %}" class="nav-link text-left">Home</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'courses' %}" class="nav-link text-left">Courses</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'QuizTakenMcq' %}" class="nav-link text-left">Quiz</a>
+                      </li>
+                        <li>
+                          <a href="{% url 'TeacherListView' %}" class="nav-link text-left">Our Teacher</a>
+                        </li>
+                       <li>
+                           {% if user.is_authenticated %}
+
+                              <li>
+                                  <a href="{% url 'home' %}" class="nav-link text-left">{{ user.username }}</a>
+
+                              </li>
+                            <li>
+                                 <a href="{% url 'logout'%}" class="nav-link text-left">Logout</a>
+                            </li>
+
+
+
+                               {% else %}
+                                    <li>
+                                        <a href="{% url 'login'%}" class="nav-link text-left">Login</a>
+                                    </li>
+                           {% endif %}
+
+                       </li>
+                    </ul>                                                                                                                                                                                                                                                                                          </ul>
+                  </nav>
+            </div>
+            <div class="ml-auto">
+              <div class="social-wrap">
+                <a href="#"><span class="icon-facebook"></span></a>
+                <a href="#"><span class="icon-twitter"></span></a>
+                <a href="#"><span class="icon-linkedin"></span></a>
+
+                <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                  class="icon-menu h3"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+{% include 'SuperAdmin/messages.html'%}
+  <div class="col-sm-10">
+
+  {% block content%}
+
+      <div class="container">
+        <br><br><br><br><br><br>
+          <center><div class="p-3 mb-2 bg-info text-white">Popular Course</div></center>
+          <div class="col-sm-13 ">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="owl-slide-3 owl-carousel">
+                          {% for book in shelf %}
+                          <div class="course-1-item" >
+                                <figure class="thumnail">
+                                  <a href="/TrainingDetailsCourse/{{book.id}}"><img src="{{ book.picture.url }}" alt="Image" class="img-fluid"></a>
+                                  <div class="price">Free</div>
+                                    <div class="category"><a href="/TrainingDetailsCourse/{{book.id}}"><h3>{{ book.TrainingName }}</h3></a></div>
+                                </figure>
+                                <div class="course-1-content pb-4">
+                                      <h2> Training Start Date : {{ book.TrainingStartDate }}</h2>
+                                      <div class="rating text-center mb-3">
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                      </div>
+                                      <p class="card-title">Training Durations : {{book.TrainingDuration}}</p>
+                                      <p><a href="#" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                                 </div>
+                          </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+        <br><br><br><br><br><br>
+          <center><div class="p-3 mb-2 bg-info text-white">Our Teachers</div></center>
+          <div class="col-sm-13 ">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="owl-slide-3 owl-carousel">
+                          {% for teacher in Teacher_list %}
+                          {% if teacher.is_trainer%}
+                              <div class="course-1-item" >
+                                    <figure class="thumnail">
+                                      <a href="#"><img src="{{ teacher.image.url }}" alt="Image" class="img-fluid"></a>
+                                      <div class="price">Free</div>
+                                        <div class="category"><a href="#"><h3>{{ teacher.username }}</h3></a></div>
+                                    </figure>
+                                    <div class="course-1-content pb-4">
+                                          <h2> {{ teacher.email }}</h2>
+                                          <p class="card-title"> {{teacher.phone_number}}</p>
+                                          <p>{{ teacher.Address}}</p>
+                                     </div>
+                              </div>
+                          {% endif%}
+                          {% endfor %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  {% endblock content %}
+  </div>
+
+
+        <div class="footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="copyright">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="{% url 'BaseHome' %}" target="_blank" >Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <!-- .site-wrap -->
+
+
+  <!-- loader -->
+  <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#51be78"/></svg>
+  </div>
+
+  <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js'%}"></script>
+  <script src="{% static 'js/jquery-ui.js'%}"></script>
+  <script src="{% static 'js/popper.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js'%}"></script>
+  <script src="{% static 'js/jquery.countdown.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap-datepicker.min.js'%}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{% static 'js/aos.js'%}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js'%}"></script>
+  <script src="{% static 'js/jquery.sticky.js'%}"></script>
+  <script src="{% static 'js/jquery.mb.YTPlayer.min.js'%}"></script>
+
+
+
+
+  <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
