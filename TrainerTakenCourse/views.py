@@ -9,18 +9,16 @@ from TrainerTakenCourse.forms import TrainerTakenCourseForm
 from TrainerTakenCourse.models import TrainerTakenCourse
 
 
-# Trainer Taken Course insert CODE
 def addTrainerTakenCourse(request, template_name='TrainerTakenCourse/TrainerTakenCourseForm.html'):
-    training = Training.objects.all()
     form = TrainerTakenCourseForm(request.POST or None)
     if form.is_valid():
         form.save()
         messages.success(request, "Created Successfully")
         return redirect('ViewTrainerTakenCourse')
-    return render(request, template_name, {'form': form,'object':training})
+    return render(request, template_name, {'form': form})
 
 
-# Trainer Taken Course View code
+
 class TrainerTakenCourseList(ListView):
     model = TrainerTakenCourse
     template_name = 'TrainerTakenCourse/TrainerTakenCourseView.html'
