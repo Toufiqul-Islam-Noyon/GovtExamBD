@@ -42,7 +42,7 @@ urlpatterns = [
     path('detailsCourse/<int:pk>', views.TrainingAndTopicListView, name='TrainingAndTopicListView'),
 
 
-    path('addStudentTakenCourse/', student_views.addStudentTakenCourse, name='addStudentTakenCourse'),
+    path('addStudentTakenCourse/', student_views.StudentTakenCourse, name='addStudentTakenCourse'),
     path('viewStudentTakenCourse/', student_views.StudentTakenCourseList.as_view(), name='StudentTakenCourseView'),
 
 
